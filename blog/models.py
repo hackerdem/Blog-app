@@ -15,7 +15,7 @@ class Post(models.Model):
         ('draft','Draft'),
         ('published','Published')
     )
-    tags=TaggableManager()
+    #tags=TaggableManager()
     title=models.CharField(max_length=250)
     slug=models.SlugField(max_length=250,
                           unique_for_date='publish')
