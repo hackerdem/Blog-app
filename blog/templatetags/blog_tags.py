@@ -1,10 +1,13 @@
 from django import template
 from django.db.models import Count
 register=template.Library()
-
+from django.utils.safestring import mark_safe
+import markdown
 from ..models import Post
 
-
+@register.filter(name='markdown')
+def markdown_format(text):
+    return mark_safe(markdown.markdown(text))
 @register.simple_tag #total_posts is registered as simple_tag
 def total_posts():
     return Post.published.count()
